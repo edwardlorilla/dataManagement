@@ -15,5 +15,8 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::resource('/scholar', 'ScholarController');
+Route::middleware(['auth:web'])->group(function () {
+    Route::resource('scholar', 'ScholarController');
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
